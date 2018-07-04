@@ -151,11 +151,11 @@ class PluginTest extends TestCase
     public function testLoadWithBootstrap()
     {
         Plugin::load('TestPlugin', ['bootstrap' => true]);
-        $this->assertTrue(Plugin::loaded('TestPlugin'));
+        $this->assertTrue(Plugin::isLoaded('TestPlugin'));
         $this->assertEquals('loaded plugin bootstrap', Configure::read('PluginTest.test_plugin.bootstrap'));
 
         Plugin::load('Company/TestPluginThree', ['bootstrap' => true]);
-        $this->assertTrue(Plugin::loaded('Company/TestPluginThree'));
+        $this->assertTrue(Plugin::isLoaded('Company/TestPluginThree'));
         $this->assertEquals('loaded plugin three bootstrap', Configure::read('PluginTest.test_plugin_three.bootstrap'));
     }
 
@@ -167,7 +167,7 @@ class PluginTest extends TestCase
     public function testLoadWithBootstrapDisableBootstrapHook()
     {
         Plugin::load('TestPlugin', ['bootstrap' => true]);
-        $this->assertTrue(Plugin::loaded('TestPlugin'));
+        $this->assertTrue(Plugin::isLoaded('TestPlugin'));
         $this->assertEquals('loaded plugin bootstrap', Configure::read('PluginTest.test_plugin.bootstrap'));
 
         $plugin = Plugin::getCollection()->get('TestPlugin');
